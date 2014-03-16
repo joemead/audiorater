@@ -1,0 +1,84 @@
+<div class="page-header">
+  <h1>Audio Details</h1>
+</div>
+
+<!-- <div class="row"> -->
+  <div class="col-md-4">
+    <img class="col-md-12" src="<%= @audio.image_url %>">
+        <small class="text-muted">Category:
+<%= Category.find_by(:id => @audio.category_id).name %>
+      </small>
+  </div>
+  <div class="col-md-8">
+    <h3><%= @audio.name %></h3>
+<p><strong>Average Rating: <%= @reviews.average(:rating).to_f %> Stars</strong></p>
+    <p class="lead"><%= @audio.date %></p>
+
+    <p><%= @audio.description %></p>
+    <p><a class="btn btn-primary" href="<%= @audio.link %>" target="_blank">Listen <img src="http://a.espncdn.com/icons/audio.png" align="absmiddle" id="listen"></a></p>
+  </div>
+
+<% user = User.find_by(:id => session[:user_id]) %>
+<% if user.present? %>
+  <div class="col-md-12">
+    <p id="add_review" class="lead"><strong>Hi, <%= user.first_name %>! Please click to write your own review. </strong></p>
+    <form action="/reviews/create" style="display: none;">
+    <p><i>Note: It's important to rate this specific clip and not the show in general.</i></p>
+
+      <input name="item_id" value=<%= @audio.id %> type="hidden">
+<input name="user_id" type="hidden" value="<%= user.id %>"><%= user.first_name %>'s rating:
+
+      <div class="form-group">
+        <select name="rating">
+        <option value="0">Select rating ...</option>
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <textarea name="body" class="form-control input-md" rows="5" placeholder="Your review goes here." ></textarea>
+      </div>
+      <input type="submit" class="btn btn-md btn-success" value="Submit My Review">
+    </form>
+
+<% else %>
+<h2><a href="/login">Sign In To Review</a></h2>
+  </div>
+<% end %>
+
+<div class="container">
+<h2>Listener Reviews</h2>
+
+<!-- <div class="row"> -->
+  <div class="col-md-12">
+
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+        <div class="row review">
+          <div class="col-md-12">
+            <p class="lead">
+              <% review.rating.times do %>
+                &starf;
+              <% end %>
+            </p>
+    <p>by <%= User.find_by(:id => review.user_id).first_name %></p>
+            <p><%= review.body %></p>
+          </div>
+        </div>
+
+      <% end %>
+    <% else %>
+      <h3>Be the first to review this audio!</h3>
+    <% end %>
+  </div>
+  </div>
+
+<script>
+jQuery("#add_review").on("click", function() {
+$("form").show();
+});
+</script>

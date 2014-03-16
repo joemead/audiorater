@@ -1,0 +1,29 @@
+<div class="container">
+<h2><%= @user.first_name %>'s Listener Reviews</h2>
+<br>
+  <div class="col-md-12">
+<% @reviews= Review.all.where(:id => params[:user_id]) %>
+    <% if @reviews.any? %>
+      <% @reviews.each do |review| %>
+         <p>
+<% @audio= Item.where(:id => @user.id) %>
+             <%= @audio.name %>
+             </p>
+        <div class="row review">
+          <div class="col-md-12">
+              <% review.rating.times do %>
+                &starf;
+              <% end %>
+              <%= review.title %>
+            </p>
+    <p>by <%= User.find_by(:id => review.user_id).first_name %></p>
+            <p><%= review.body %></p>
+          </div>
+        </div>
+
+      <% end %>
+    <% else %>
+      <h3><%= @user.first_name %> has not reviewed any audio.</h3>
+    <% end %>
+  </div>
+  </div>

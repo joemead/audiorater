@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1>Edit <%= @user.first_name %>'s Account</h1>
+</div>
+
+<form action="/users/<%= @user.id %>/update">
+
+  <div class="form-group">
+    <label class="control-label">Enter your first name:</label>
+    <input name="first_name" type="text" class="form-control input-md" placeholder="<%= @user.first_name %>">
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Enter your email:</label>
+    <input name="email" type="text" class="form-control input-md" placeholder="<%= @user.email %>">
+  </div>
+
+  <div class="form-group">
+    <label>Enter a password:</label>
+    <input name="password" type="password" class="form-control input-md" placeholder="<%= @user.password %>">
+  </div>
+
+  <button type="submit" class="btn btn-success btn-md">Submit</button>
+  or
+  <%= link_to "Go Back", "/audio" %>
+</form>

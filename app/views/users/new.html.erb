@@ -1,20 +1,11 @@
-<div class="page-header">
-  <h1>Sign Up</h1>
-</div>
-
-<form action="/users/create" class="col-md-4">
-
-  <div class="form-group">
-    <label class="control-label">Enter your First Name:</label>
-    <input name="first_name" type="text" class="form-control input-md" placeholder="Your first name...">
-  </div>
-
-  <div class="form-group">
-    <label>Enter a Password:</label>
-    <input name="password" type="text" class="form-control input-md" placeholder="Choose a password that you'll never remember">
-  </div>
-
-  <button type="submit" class="btn btn-success btn-md">Sign Me Up!</button>
-  or
-  <%= link_to "Go Back", "/" %>
+<div class="container">
+<center><img src="/assets/espnaudio2.jpg" width="250px"></center>
+<form class="form-signin" role="form" action="/users/create">
+<h2 class="form-signin-heading">Sign Up Here</h2>
+        <input type="text" class="form-control input-md" name="first_name" placeholder="Your first name ... ">
+        <input type="email" class="form-control" name="email" placeholder="Email address" required autofocus>
+        <input type="password" class="form-control" name="pwd" placeholder="Password" required>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Me Up!</button>
+<p>Already have an account? <%= link_to "Click here to sign in!", "/login" %></p>
 </form>
+</div>

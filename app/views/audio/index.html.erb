@@ -1,0 +1,17 @@
+<div class="page-header">
+<!--   <%= link_to "Add New Audio", "/audio/new", :class => "btn btn-md btn-success pull-right" %> -->
+  <h1><center><font color="black">ESPN Audio Rater</font></center></h1>
+</div>
+
+<% @audio_list.each do |audio| %>
+  <div class="jumbotron">
+      <a href="/audio/<%= audio.id %>/show"><img width="288" src="<%= audio.image_url %>"></a>
+      <h3><a href="/audio/<%= audio.id %>/show"><%= audio.name %></a></h3>
+      <p class="lead"><%= audio.date %></p>
+      <p><%= audio.description %></p>
+      <p><a class="btn btn-primary" href="<%= audio.link %>" target="_blank">Listen <img src="http://a.espncdn.com/icons/audio.png" align="absmiddle" id="listen"></a>&nbsp;<a class="btn btn-primary" href="/audio/<%= audio.id %>/show" role="button">Submit Feedback »</a></p>
+      <small class="text-muted">Category:
+      <%= Category.find_by(:id => audio.category_id).name %>
+      </small>
+    </div>
+<% end %>

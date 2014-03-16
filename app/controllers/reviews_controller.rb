@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 class ReviewsController < ApplicationController
 
   def create
@@ -8,7 +11,15 @@ class ReviewsController < ApplicationController
     review.item_id = params[:item_id]
     review.user_id = params[:user_id]
     review.save
-    redirect_to "/products/#{review.item_id}/show"
+    redirect_to "/audio/#{review.item_id}/show"
   end
+
+ def index
+    @city = "Bristol,CT"
+    @url = URI.escape("http://api.openweathermap.org/data/2.5/weather?q=#{@city}&units=imperial")
+    @json_data = open(@url).read
+    @data = JSON.parse(@json_data)
+    @weather= @data["weather"]
+end
 
 end

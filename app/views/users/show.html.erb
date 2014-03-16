@@ -1,0 +1,8 @@
+ <div class="page-header">
+  <%= link_to "Edit", "/users/#{@user.id}/edit", :class => "btn btn-md btn-success pull-right" %>
+<h1>My Profile</h1>
+</div>
+
+<p>Name: <%= @user.first_name %></p>
+<p>Email: <%= @user.email %></p>
+<p>Password: <%= @user.password %></p>

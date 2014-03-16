@@ -1,11 +1,10 @@
-<h1>Sign In Here</h1>
-
-<form action="/authenticate">
-  <label>First name:</label>
-  <input type="text" name="fname">
-  <br>
-  <label>Password:</label>
-  <input type="password" name="pwd">
-  <br>
-  <input type="submit">
-</form>
+    <div class="container">
+      <center><img src="/assets/espnaudio2.jpg" width="250px"></center>
+      <form class="form-signin" role="form" action="/authenticate">
+        <h2 class="form-signin-heading">Please Sign In</h2>
+        <input type="email" class="form-control" name="email" placeholder="Email address" required autofocus>
+        <input type="password" class="form-control" name="pwd" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p>Don't have an account? <%= link_to "Click here to sign up!", "/users/new" %></p>
+            </form>
+    </div>
